@@ -16,7 +16,7 @@ class App extends React.Component{
     this.onChange = this.onChange.bind(this);
   }
   addItem(k){
-    k.preventDefault();    //Ko cho gui form??? di voi button
+    k.preventDefault();    //Ko cho gui form??? di voi button| KHONG CHO RELOAD TRANG WEB
     const newItem1 = this.state.newItem; //Item1 nay la 1 item moi
     if(newItem1.text!==""){
       const newItems = [...this.state.items, newItem1]; //mang items - them item moi vao cuoi neu no ko rong
