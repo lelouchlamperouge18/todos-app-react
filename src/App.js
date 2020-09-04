@@ -14,6 +14,7 @@ class App extends React.Component{
     }
     this.addItem = this.addItem.bind(this); //lenh nay de su dung duoc setState
     this.onChange = this.onChange.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
   addItem(k){
     k.preventDefault();    //Ko cho gui form??? di voi button| KHONG CHO RELOAD TRANG WEB
@@ -36,6 +37,14 @@ class App extends React.Component{
       }
     })
   }
+  deleteItem(k){
+    const afterDelete = this.state.items.filter(
+      item => item.text!==k
+    );
+    this.setState({
+      items: afterDelete
+    })
+  }
   render(){
     return (
       <div className="App">
@@ -46,7 +55,7 @@ class App extends React.Component{
             <button type="submit"> ADD TASK </button>
           </form>
         </header>
-        <ListItems items={this.state.items}></ListItems> {/*Hien thi cac items o ben duoi form*/}
+        <ListItems items={this.state.items} deleteItem={this.deleteItem}></ListItems> {/*Hien thi cac items o ben duoi form*/}
       </div>
     )
   }

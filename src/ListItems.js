@@ -5,8 +5,8 @@ function ListItems(props){   //Phai dat ten function giong ten file
         return (
             <div className="list">
                 <p> {item.text} ➜    
-                    <button type="submit" id="button1"> COMPLETE </button>
-                    <button type="submit" id="button2"> DELETE </button>
+                    {/* <button type="radio"> COMPLETE </button> */}
+                    <button type="submit" onClick={()=>props.deleteItem(item.text)}> DELETE </button>
                 </p>
             </div>    
         )
