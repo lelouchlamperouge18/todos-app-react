@@ -1,7 +1,7 @@
 import React from 'react';
 
-function ListItems(props){   //Phai dat ten function giong ten file
-    const listItems = props.items.map(item =>{     //Moi item tra ve cai text cua no cung 2 button
+function ListItems(props){   
+    const listItems = props.items.map(item =>{     
         return (
             <div className="list">
                 <p> {item.text} ➜ </p>   
