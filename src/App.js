@@ -12,8 +12,11 @@ class App extends React.Component{
   }
   addItem = e => {
     e.preventDefault();    
-    const nowItem = this.state.newItem; 
-    if((nowItem.text!=="")&&([...this.state.items].includes(nowItem.text)===false)){
+    var temp = [...this.state.items];
+    temp = temp.map(t => t.text);
+    const nowItem = this.state.newItem;
+    nowItem.text = nowItem.text.trim();
+    if((nowItem.text!=="")&&(temp.includes(nowItem.text)===false)){
       const newItems = [...this.state.items, nowItem]; 
       this.setState({     
         items: newItems,  
@@ -22,7 +25,8 @@ class App extends React.Component{
         }
       })
     }
-    console.log(nowItem);
+    // console.log(nowItem);
+    // console.log(this.state.items);
   };
   onInputChange = e =>{ 
     this.setState({
