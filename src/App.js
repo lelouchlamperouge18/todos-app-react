@@ -8,8 +8,9 @@ class App extends React.Component{
     items:[],
     newItem: {
       text: ''
-    }
-  }
+    },    
+    isComplete: false
+  } 
   addItem = e => {
     e.preventDefault();    
     var temp = [...this.state.items];
@@ -44,14 +45,17 @@ class App extends React.Component{
     })
   };
   completeItem = e => { 
-    //...
-  }
+    this.setState({
+      isComplete: true 
+    })
+  } 
   render(){
     return (
       <div className="App">
+        <h1> TODOS - APP REACT </h1>
         <header>
           <form id="todos-form" onSubmit={this.addItem}>      
-            <input type="text" placeholder="Input task.." 
+            <input type="text" placeholder="Input task here..." 
               value={this.state.newItem.text} onChange={this.onInputChange}/>
             <button type="submit"> ADD TASK </button>
           </form>

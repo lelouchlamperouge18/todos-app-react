@@ -2,12 +2,12 @@
     color: white;
     background-color: #473C8B;
     margin: 10px auto;
-    width: 40%;
+    width: 35%;
     /* display: flex;
     justify-content: center; */
 }
 .list p {
-    padding: 10px 5px;
+    padding: 5px 5px;
 }
 
 

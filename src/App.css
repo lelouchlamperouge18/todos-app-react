@@ -45,6 +45,9 @@
 body {
   background-color: rgb(0, 24, 72);
 }
+.App h1 {
+  color: white;
+}
 
 
 
