@@ -1,15 +1,15 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import ListItems from './ListItems'
+import ListItems from './components/ListItems'
 
 class App extends React.Component{
   state={ 
     items:[],
     newItem: {
-      text: ''
-    },    
-    isComplete: false
+      text: '',
+      isComplete: false
+    }    
   } 
   addItem = e => {
     e.preventDefault();    
@@ -17,12 +17,14 @@ class App extends React.Component{
     temp = temp.map(t => t.text);
     const nowItem = this.state.newItem;
     nowItem.text = nowItem.text.trim();
+    nowItem.isComplete = false;
     if((nowItem.text!=="")&&(temp.includes(nowItem.text)===false)){
       const newItems = [...this.state.items, nowItem]; 
       this.setState({     
         items: newItems,  
         newItem: {        
-          text: ''
+          text: '',
+          isComplete: false
         }
       })
     }
@@ -45,9 +47,19 @@ class App extends React.Component{
     })
   };
   completeItem = e => { 
-    this.setState({
-      isComplete: true 
-    })
+    const afterComplete = [...this.state.items];
+    afterComplete[e].isComplete = true;
+    this.setState({     
+      items: afterComplete
+    }) 
+    // const afterComplete = this.state.items.map(
+    //   item => (e === item.text) ? item.isComplete = true : item 
+    // )
+    // console.log(afterComplete);
+    // console.log(typeof(afterComplete[0]));
+    // this.setState({     
+    //   items: afterComplete
+    // })
   } 
   render(){
     return (
@@ -55,13 +67,21 @@ class App extends React.Component{
         <h1> TODOS - APP REACT </h1>
         <header>
           <form id="todos-form" onSubmit={this.addItem}>      
-            <input type="text" placeholder="Input task here..." 
-              value={this.state.newItem.text} onChange={this.onInputChange}/>
+            <input 
+              type="text" 
+              placeholder="Input task here..." 
+              value={this.state.newItem.text} 
+              onChange={this.onInputChange}
+            />
             <button type="submit"> ADD TASK </button>
           </form>
         </header>
-        <ListItems items={this.state.items} deleteItem={this.deleteItem} 
-          completeItem={this.completeItem}></ListItems> 
+        <ListItems 
+          items={this.state.items} 
+          deleteItem={this.deleteItem} 
+          completeItem={this.completeItem}
+        >
+        </ListItems> 
       </div>
     )
   }

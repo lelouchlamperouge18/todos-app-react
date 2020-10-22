@@ -6,9 +6,21 @@
     /* display: flex;
     justify-content: center; */
 }
-.list p {
+
+/* .list p {
+    padding: 5px 5px;
+} */
+
+.taskName {
     padding: 5px 5px;
 }
+
+.taskName-line {
+    padding: 5px 5px;
+    text-decoration: line-through;
+    opacity: 0.3;
+}
+
 
 
 
