@@ -61,6 +61,20 @@ class App extends React.Component{
     //   items: afterComplete
     // })
   } 
+  deleteAll = e => {
+    this.setState({
+      items: []
+    })
+  };
+  finishAll = e => {
+    var temp = [...this.state.items];
+    for (let i=0;i<temp.length;i++){
+      temp[i].isComplete = true;
+    }
+    this.setState({
+      items: temp
+    })
+  };
   render(){
     return (
       <div className="App">
@@ -75,6 +89,10 @@ class App extends React.Component{
             />
             <button type="submit"> ADD TASK </button>
           </form>
+          <div className="allFiDe">
+            <button type="submit" class="allFiDeButton" onClick={this.finishAll}>❀ FINISH ALL TASK ❀</button>
+            <button type="submit" class="allFiDeButton" onClick={this.deleteAll}>✡ DELETE ALL TASK ✡</button> 
+          </div>
         </header>
         <ListItems 
           items={this.state.items} 

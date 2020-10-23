@@ -48,6 +48,17 @@ body {
 .App h1 {
   color: white;
 }
+.allFiDe {
+  margin: 10px;
+  /* border: 1px dashed white; */
+}
+.allFiDe button {
+  background-color: seagreen;
+}
+.allFiDeButton {
+  padding: 3px 15px;
+  margin: 2px 8px;
+}
 
 
 
