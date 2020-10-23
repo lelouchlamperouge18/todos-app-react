@@ -3,14 +3,14 @@ import './ListItems.css';
 
 function ListItems(props){   
     const listItems = props.items.map((item,index) =>{    
-        let className = 'taskName' ;
-        if (item.isComplele===true){
-            className = 'taskName taskName-line';
-        }
-        if (item.text==='nothing') className = 'taskName taskName-line';
+        // let className = 'taskName' ;
+        // if (item.isComplele===true){
+        //     className = 'taskName taskName-line';
+        // }
+        // if (item.text==='nothing') className = 'taskName taskName-line';
         return (
             <div className="list" key={index}> 
-                <div className={ className }>   
+                <div className={ item.isComplete ? 'taskName taskName-line':'taskName' }>   
                     <p> {item.text} ➜ </p> 
                 </div>
                 {/* <p style={{ textDecoration: item.isComplete ? "line-through" : "" }}> {item.text} ➜ </p>  */}
