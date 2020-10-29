@@ -17,13 +17,15 @@ function ListItems(props){
                 {/* <p style={!isComplete? {textDecoration: 'line-through'} : null}> {item.text} ➜ </p>  */}
                 <div className="twoButton">
                     <button type="submit" onClick={()=>props.completeItem(index)}> COMPLETE </button>
-                    <button type="submit" onClick={()=>props.deleteItem(item.text)}> DELETE </button>
+                    <button type="submit" onClick={()=>props.deleteItem(item.text,index)}> DELETE </button> 
                 </div>
             </div>    
         )
     })
     return(
-        <div>{listItems}</div>
+        <div>
+            {listItems}
+        </div>
     )
 }
 export default ListItems; 

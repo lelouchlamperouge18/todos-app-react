@@ -6,6 +6,7 @@ import ListItems from './components/ListItems'
 class App extends React.Component{
   state={ 
     items:[],
+    count: 0,
     newItem: {
       text: '',
       isComplete: false
@@ -20,8 +21,11 @@ class App extends React.Component{
     nowItem.isComplete = false;
     if((nowItem.text!=="")&&(temp.includes(nowItem.text)===false)){
       const newItems = [...this.state.items, nowItem]; 
+      let newCount = this.state.count;  
+      newCount++;
       this.setState({     
-        items: newItems,  
+        items: newItems,
+        count: newCount,
         newItem: {        
           text: '',
           isComplete: false
@@ -38,20 +42,17 @@ class App extends React.Component{
       }
     })
   };
-  deleteItem = e => {
-    const afterDelete = this.state.items.filter(
-      item => item.text!==e
-    );
-    this.setState({
-      items: afterDelete
-    })
-  };
   completeItem = e => { 
     const afterComplete = [...this.state.items];
+    let newCount = this.state.count;  
+    if (afterComplete[e].isComplete === false) newCount--;
     afterComplete[e].isComplete = true;
     this.setState({     
-      items: afterComplete
-    }) 
+      count: newCount,
+      items: afterComplete,
+    })
+    // console.log(this.state.items[e].isComplete);
+    // ----------------------------------------------------
     // const afterComplete = this.state.items.map(
     //   item => (e === item.text) ? item.isComplete = true : item 
     // )
@@ -61,9 +62,26 @@ class App extends React.Component{
     //   items: afterComplete
     // })
   } 
+  deleteItem = (e,f) => {
+    // console.log(this.state.items[e]);
+    const temp = [...this.state.items];
+    let newCount = this.state.count;  
+    if (temp[f].isComplete === false) {
+      newCount--;
+    }
+    const afterDelete = this.state.items.filter(
+      item => item.text!==e
+    );
+    this.setState({
+      count: newCount,
+      items: afterDelete
+    })
+  };
+   
   deleteAll = e => {
     this.setState({
-      items: []
+      items: [],
+      count: 0
     })
   };
   finishAll = e => {
@@ -72,7 +90,8 @@ class App extends React.Component{
       temp[i].isComplete = true;
     }
     this.setState({
-      items: temp
+      items: temp,
+      count: 0
     })
   };
   render(){
@@ -90,10 +109,11 @@ class App extends React.Component{
             <button type="submit"> ADD TASK </button>
           </form>
           <div className="allFiDe">
-            <button type="submit" class="allFiDeButton" onClick={this.finishAll}>❀ FINISH ALL TASK ❀</button>
-            <button type="submit" class="allFiDeButton" onClick={this.deleteAll}>✡ DELETE ALL TASK ✡</button> 
+            <button type="submit" className="allFiDeButton" onClick={this.finishAll}>❀ FINISH ALL TASK ❀</button>
+            <button type="submit" className="allFiDeButton" onClick={this.deleteAll}>✡ DELETE ALL TASK ✡</button> 
           </div>
         </header>
+        <p className="totalTasks">Total tasks left: {this.state.count} </p> 
         <ListItems 
           items={this.state.items} 
           deleteItem={this.deleteItem} 
